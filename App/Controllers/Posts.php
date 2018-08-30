@@ -2,23 +2,28 @@
 
 namespace App\Controllers;
 
+use Core\Controller;
+use Core\View;
+
 /**
  * Posts Controller
  * @package App\Controllers
  */
 
-class Posts
+class Posts extends Controller
 {
     /**
      * Show the index page
      *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     *
      * @return void
      */
-    public function index()
+    public function indexAction()
     {
-        echo 'Hello from the index action in the Posts controller!';
-        echo '<p>Query string parameters: <pre>' .
-            htmlspecialchars(print_r($_GET, true)) . '</pre></p>';
+        View::renderTemplate('posts.index');
     }
 
     /**
@@ -26,8 +31,20 @@ class Posts
      *
      * @return void
      */
-    public function addNew()
+    public function addNewAction()
     {
         echo 'Hello from the addNew action in the Posts controller!';
+    }
+
+    /**
+     * Show the edit page
+     *
+     * @return void
+     */
+    public function editAction()
+    {
+        echo 'Hello from the edit action in the Posts controller!';
+        echo '<p>Query string parameters: <pre>' .
+            htmlspecialchars(print_r($this->route_params, true)) . '</pre></p>';
     }
 }
